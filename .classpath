@@ -37,7 +37,7 @@
 	<classpathentry kind="lib" path="depends/jsoup-1.5.2.jar"/>
 	<classpathentry kind="lib" path="depends/memcached-2.6.3.jar"/>
 	<classpathentry kind="lib" path="depends/commons-io-2.2.jar"/>
-	<classpathentry kind="lib" path="depends/giiwa-1.1.jar"/>
+	<classpathentry kind="lib" path="depends/giiwa-1.1.jar" sourcepath="/giiwa"/>
 	<classpathentry kind="lib" path="depends/core-3.1.0.jar"/>
 	<classpathentry kind="lib" path="depends/slf4j-api-1.5.8.jar"/>
 	<classpathentry kind="lib" path="depends/mail-1.4.jar"/>
