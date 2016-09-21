@@ -1,16 +1,16 @@
 [{
 			'name' : 'admin',
 			'childs' : [{
-						name : 'menu.demo',
-						classes : 'icon-gift',
-						access : 'access.demo.admin',
+						name : 'menu.statichtml',
+						classes : 'icon-html-five',
+						access : 'access.config.admin',
 						seq : 1040,
 						childs : [{
-									name : 'menu.demo1',
-									load : '/admin/demo',
-									access : 'access.demo.admin',
+									name : 'menu.statichtml',
+									load : '/admin/statichtml',
+									access : 'access.config.admin',
 									seq : 10,
-									classes : 'icon-glass'
+									classes : 'icon-folder'
 								}]
 					}]
 		}]
