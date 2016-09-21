@@ -1,0 +1,10 @@
+a.statichtml=Static html
+btn.upload.statichtml=Upload html(.zip)
+file.created=Created
+file.name=Name
+file.size=Size
+file.updated=Updated
+hint.upload.statichtml=Upload static html zip file
+menu.statichtml=Statichtml
+notes.statichtml.module=upload static html zip file
+statichtml.index.title=Static html management

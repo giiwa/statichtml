@@ -1,0 +1,10 @@
+a.statichtml=静态Html
+btn.upload.statichtml=上传Html(.zip)
+file.created=创建
+file.name=名称
+file.size=大小
+file.updated=更新
+hint.upload.statichtml=上传静态Html zip包文件
+menu.statichtml=静态Html
+notes.statichtml.module=上传静态Html zip包文件
+statichtml.index.title=静态Html文件管理

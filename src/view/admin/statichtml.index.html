@@ -6,6 +6,12 @@
 	<a href='/admin/statichtml' class='selected'>$lang.get('a.statichtml')</a>
 </div>
 
+<div class='notes'>
+	$lang.get('notes.statichtml.module')
+</div>
+
+<input type='hidden' name='repo'/>
+
 <table id='statichtml-table' class='tablesorter nospace' border="0" cellpadding="0" cellspacing="1">
 	<thead>
 		<tr>
@@ -17,32 +23,66 @@
 		</tr>
 	</thead>
 	<tbody>
-#foreach($f in $list)
+#if($f)
 	<tr>
-		<td><a href="/admin/demo/detail?id=$f.id">$f.name</a></td>
-		<td>$!f.size</td>
-		<td>$!lang.format($f.updated, 'yyyy-MM-dd HH:mm:ss')</td>
-		<td>$!lang.format($f.created, 'yyyy-MM-dd HH:mm:ss')</td>
+		<td><a href="/admin/statichtml?f=$!this.path($f.getParentFile())">..</a></td>
+		<td colspan＝"3">&nbsp;</td>
+	</tr>
+#end
+#foreach($f1 in $list)
+	#if($f || $f1.name != 'admin')
+	<tr>
 		<td>
-			<a href='javascript:;' onclick='_delete("$f.id", this)'>$lang.get('a.delete')</a>
+			#if($f1.isFile())
+			<a href="$!this.path($f1)" target="_blank">$f1.name</a>
+			#else
+			<a href="/admin/statichtml?f=$!this.path($f1)">$f1.name</a>
+			#end
+		</td>
+		<td>
+			#if($f1.isFile())
+			$lang.size($!f1.length())
+			#end
+		</td>
+		<td>$!lang.format($f1.lastModified(), 'yyyy-MM-dd HH:mm:ss')</td>
+		<td>$!lang.format($f1.created, 'yyyy-MM-dd HH:mm:ss')</td>
+		<td>
+			<a href='javascript:;' onclick="_delete('$this.path($f1)', this)">$lang.get('a.delete')</a>
 		</td>
 	</tr>
+	#end
 #end
 	</tbody>
 </table>
 
- #parse('/widget/goto.page.html')
-
-<div class='btns'>
-	<a href="/admin/statichtml/create">$lang.get('a.create')</a>
-</div>
-
 <script>
 function _delete(id, o) {
 	if(confirm("$lang.get('title.are_u_sure_delete')")) {
-		$.post("/admin/statichtml/delete", {id:id}, function(d){
+		$.post("/admin/statichtml/delete", {f:id}, function(d){
 			$(o).parent().parent().remove();
 		})
 	}
 }
+
+$(function() {
+	$('input[name=repo]').upload({
+		caption : "$lang.get('btn.upload.statichtml')",
+		hint : "$lang.get('hint.upload.statichtml')",
+		btn_resume : "$lang.get('btn.resume')",
+		btn_delete : "$lang.get('btn.delete')",
+		btn_cancel : "$lang.get('btn.cancel')",
+		msg_stop : "$lang.get('msg.stop')",
+		msg_done : "$lang.get('msg.done')",
+		done : function(url) {
+			processing && processing.show();
+			$.post('/admin/statichtml/add', {
+				url : url
+			}, function(d) {
+				processing && processing.hide();
+				reload();				
+			});
+		}
+	});
+});
+
 </script>
